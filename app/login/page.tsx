@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
+import Image from "next/image";
 
 export default function Login({
   searchParams,
@@ -50,7 +51,24 @@ export default function Login({
 
     return redirect("/login?message=Check email to continue sign in process");
   };
+  const signInWithGoogle = async () => {
+    "use server";
+    const supabase = createClient();
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "http://example.com/auth/callback",
+        queryParams: {
+          access_type: "offline",
+          prompt: "consent",
+        },
+      },
+    });
 
+    if (data.url) {
+      redirect(data.url); // use the redirect API for your server framework
+    }
+  };
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
@@ -113,6 +131,23 @@ export default function Login({
             {searchParams.message}
           </p>
         )}
+        {/* google sign up and sign in */}
+        <SubmitButton
+          formAction={signInWithGoogle}
+          style={{ backgroundColor: "#3b5998" }}
+          className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
+          pendingText="Signing In..."
+        >
+          <Image
+            className="pr-2"
+            src="/images/google.svg"
+            alt=""
+            style={{ height: "2rem" }}
+            width={35}
+            height={35}
+          />
+          Google Sign In
+        </SubmitButton>
       </form>
     </div>
   );
