@@ -8,10 +8,17 @@ const GoogleSignInButton = ({ supabase }: { supabase: any }) => {
           provider: "google",
         });
       }}
-      className="bg-white border border-black rounded-md px-4 py-2 text-black text-center"
+      className="flex items-center justify-center bg-white border border-gray-300 hover:bg-gray-100 text-black font-medium py-2 px-4 rounded-md shadow-sm transition duration-150 ease-in-out"
     >
+      <img
+        src="/images/google.svg"
+        alt="Google Icon"
+        className="h-5 w-5 mr-2"
+      />
       Sign In with Google
     </button>
   );
 };
+
 export default GoogleSignInButton;
+

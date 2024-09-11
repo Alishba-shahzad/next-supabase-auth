@@ -31,7 +31,7 @@ export default function Login({
 
   const signUp = async (formData: FormData) => {
     "use server";
-
+    console.log(formData)
     const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -44,9 +44,9 @@ export default function Login({
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
-
+    console.log(error)
     if (error) {
-      return redirect("/login?message=Could not authenticate user");
+      return redirect(`/login?message=${error.message}`);
     }
 
     return redirect("/login?message=Check email to continue sign in process");
@@ -70,85 +70,152 @@ export default function Login({
     }
   };
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-      <Link
-        href="/"
-        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
-        >
-          <polyline points="15 18 9 12 15 6" />
-        </svg>{" "}
-        Back
-      </Link>
+    <div className="flex-1 flex px-8 items-center gap-2 max-w-4xl w-full">
 
-      <form className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
-        <label className="text-md" htmlFor="email">
-          Email
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          name="email"
-          placeholder="you@example.com"
-          required
-        />
-        <label className="text-md" htmlFor="password">
-          Password
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
-        <SubmitButton
-          formAction={signIn}
-          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing In..."
-        >
-          Sign In
-        </SubmitButton>
-        <SubmitButton
-          formAction={signUp}
-          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing Up..."
-        >
-          Sign Up
-        </SubmitButton>
-        {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
-            {searchParams.message}
-          </p>
-        )}
-        {/* google sign up and sign in */}
-        <SubmitButton
-          formAction={signInWithGoogle}
-          style={{ backgroundColor: "#3b5998" }}
-          className="px-7 py-2 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
-          pendingText="Signing In..."
-        >
-          <Image
-            className="pr-2"
-            src="/images/google.svg"
-            alt=""
-            style={{ height: "2rem" }}
-            width={35}
-            height={35}
-          />
-          Google Sign In
-        </SubmitButton>
-      </form>
+      <div className="flex-1 flex flex-col p-2 gap-4 relative">
+        <div className="flex">
+          <Link
+            href="/"
+            className="py-2 px-4 rounded-md no-underline text-white bg-customFormBg flex items-center group text-sm"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
+            >
+              <polyline points="15 18 9 12 15 6" />
+            </svg>{" "}
+            Back
+          </Link>
+        </div>
+        <form className="md:flex flex-1 w-full shadow-3xl rounded-large block">
+          <div className="flex-1 flex flex-col w-full justify-center text-foreground p-8 bg-white md:rounded-left rounded-top p-[50px]">
+            <div className="flex items-center mb-3">
+              <h1 className="flex-1 text-2xl">Sign in</h1>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-md py-1" htmlFor="email">
+                Email
+              </label>
+              <input
+                className="rounded-[50px] px-4 py-2 bg-background border outline-0 mb-6 text-sm h-48"
+                name="email"
+                placeholder="Enter Your Email"
+              // required
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-md py-1" htmlFor="password">
+                Password
+              </label>
+              <input
+                className="rounded-[50px] px-4 py-2 bg-background border outline-0 mb-6 text-sm h-48"
+                type="password"
+                name="password"
+                placeholder="Enter Your Password"
+              // required
+              />
+            </div>
+            <SubmitButton
+              formAction={signIn}
+              className="rounded-[50px] px-4 py-2 text-foreground bg-customFormBg text-white border"
+              pendingText="Signing In..."
+            >
+              Sign In
+            </SubmitButton>
+            {searchParams?.message && (
+              <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+                {searchParams.message}
+              </p>
+            )}
+            <div className="flex items-center">
+              <div className="flex-1 flex gap-2 py-2">
+                <input className="w-4 accent-[#f15584]" type="checkbox" id="flexCheckDefault" />
+                <label className="hover:cursor-pointer text-textColor">
+                  Remember Me!
+                </label>
+              </div>
+              <div className="flex-1 text-right">
+                <Link
+                  href="#"
+                  className="no-underline text-sm text-linkColor"
+                >
+                  Forgot Password
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="p-[50px] flex-1 text-center flex items-center flex-col justify-center p-8 bg-customFormBg text-white md:rounded-right rounded-bottom">
+            <h1 className="text-3xl font-semibold text-center">Welcome To Login</h1>
+            <p className="text-md text-center py-2">Don't have an account?</p>
+            <div className="py-2">
+              <SubmitButton
+                formAction={signUp}
+                className="transition ease-in-out px-8 py-2 text-white mb-2 rounded-[50px] bg-transparent border hover:text-black hover:bg-white"
+                pendingText="Signing Up..."
+              >
+                Sign Up
+              </SubmitButton>
+              <div className="flex gap-2 items-center py-2">
+                <div className="flex-1">
+                  <hr className="border-borderColor" />
+                </div>
+                <div>OR</div>
+                <div className="flex-1">
+                  <hr className="border-borderColor" />
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <SubmitButton
+                  formAction={signInWithGoogle}
+                  className="flex items-center gap-2"
+                  pendingText="Signing In..."
+                >
+                  <Image
+                    className="bg-background flex gap-2 items-center p-2 rounded-md"
+                    src="/images/google.svg"
+                    alt=""
+                    width={35}
+                    height={35}
+                  />
+                </SubmitButton>
+                <SubmitButton
+                  className="flex items-center gap-2"
+                  pendingText="Signing In..."
+                >
+                  <Image
+                    className="bg-background flex gap-2 items-center p-2 rounded-md"
+                    src="/images/facebook.svg"
+                    alt=""
+                    width={35}
+                    height={35}
+                  />
+                </SubmitButton>
+                <SubmitButton
+                  className="flex items-center gap-2"
+                  pendingText="Signing In..."
+                >
+                  <Image
+                    className="bg-background flex gap-2 items-center p-2 rounded-md"
+                    src="/images/linkedin.svg"
+                    alt=""
+                    width={35}
+                    height={35}
+                  />
+                </SubmitButton>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
     </div>
   );
 }
