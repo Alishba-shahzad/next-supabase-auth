@@ -27,3 +27,11 @@
     @apply border-foreground/20;
   }
 }
+
+.mainBackgrounImage {
+  background-image: url(/images/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+

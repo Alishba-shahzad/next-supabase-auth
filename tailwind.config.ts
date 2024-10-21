@@ -26,6 +26,7 @@ module.exports = {
           background: "hsl(var(--btn-background))",
           "background-hover": "hsl(var(--btn-background-hover))",
         },
+        graylight: '#f1f1f1',
       },
       backgroundImage: {
         customFormBg: "var(--custom-form-ng)",

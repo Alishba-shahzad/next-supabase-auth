@@ -17,6 +17,7 @@ import Link from "next/link";
 function NavbarHeader() {
   return (
     <>
+
       <Navbar expand="lg" className="navbar-dark bg-dark w-100">
         <Container>
           <Navbar.Brand href="#home">LOGO</Navbar.Brand>
@@ -46,11 +47,13 @@ function NavbarHeader() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="flex-1 flex flex-col gap-20 max-w-4xl px-3">
+
+      <div className="flex-1 flex flex-col px-3 w-100 py-3">
         <Header />
         {/* write code to implement upload functionality for uploading csv files */}
-        <div className="flex flex-col gap-4 p-8 bg-white rounded">
+        <div className="flex flex-col gap-4 p-8 bg-graylight rounded border border-4 border-black">
           <h2 className="text-2xl font-bold">Upload your CSV</h2>
+
           <p>
             Upload your CSV file to get started. We will automatically create a
             table in your database with the same name as your CSV file.
@@ -59,13 +62,14 @@ function NavbarHeader() {
         </div>
       </div>
 
-      <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
+
+      <footer className="w-full h-5 border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs bg-dark text-white">
         <p>
           Powered by{" "}
           <a
             href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
             target="_blank"
-            className="font-bold hover:underline"
+            className="font-bold pt-1 hover:underline"
             rel="noreferrer"
           >
             Supabase
