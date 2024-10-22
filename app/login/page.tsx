@@ -15,17 +15,18 @@ export default function Login({
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const supabase = createClient();
+    
+      const supabase = createClient();
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) {
-      return redirect("/login?message=Could not authenticate user");
-    }
-
+      
+      if (error) {
+        return redirect("/login?message=Could not authenticate user");
+      }
     return redirect("/protected");
   };
 
@@ -158,7 +159,7 @@ export default function Login({
             <div className="py-2">
               <SubmitButton
                 formAction={signUp}
-                className="transition ease-in-out px-8 py-2 text-white mb-2 rounded-[50px] bg-transparent border hover:text-black hover:bg-white"
+                className="transition ease-in-out px-8 py-2 text-white mb-2 rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white"
                 pendingText="Signing Up..."
               >
                 Sign Up

@@ -23,10 +23,14 @@ function NavbarHeader() {
           <Navbar.Brand href="#home">LOGO</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            <Nav className="mx-auto">
+              <Nav.Link href="#home" className="text-white">Home</Nav.Link>
+              <Nav.Link href="#About" className="text-white">About</Nav.Link>
+              {/* <Nav.Link href="#Portfolio" className="text-white">Portfolio</Nav.Link> */}
+              <Nav.Link href="#Contact" className="text-white">Contact</Nav.Link>
+              <Nav.Link href="#News" className="text-white">News</Nav.Link>
+              <Nav.Link href="#Events" className="text-white">Events</Nav.Link>
+              <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="text-white">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -40,20 +44,18 @@ function NavbarHeader() {
             </Nav>
             <Link
               href="/login"
-              className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+              className="transition ease-in-out px-8 py-2 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
             >
               Login
             </Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <div className="flex-1 flex flex-col px-3 w-100 py-3">
+      <div className="flex-1 flex flex-col max-w-4xl px-3 py-5">
         <Header />
         {/* write code to implement upload functionality for uploading csv files */}
-        <div className="flex flex-col gap-4 p-8 bg-graylight rounded border border-4 border-black">
-          <h2 className="text-2xl font-bold">Upload your CSV</h2>
-
+        <div className="flex flex-col mt-5">
+          <h2 className="text-accentColor font-bold">Upload your CSV</h2>
           <p>
             Upload your CSV file to get started. We will automatically create a
             table in your database with the same name as your CSV file.

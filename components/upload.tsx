@@ -33,12 +33,13 @@ export default function UploadButton() {
   };
 
   return (
-    <div>
+    <div className="fileUploadWrapper">
       <input
         type="file"
         onChange={handleUpload}
         disabled={loading}
         accept=".csv"
+         id="fileInput"
       />
       {error && <p>{error}</p>}
     </div>
