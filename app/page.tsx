@@ -6,7 +6,7 @@ import ConnectSupabaseSteps from "@/components/tutorial/ConnectSupabaseSteps";
 import SignUpUserSteps from "@/components/tutorial/SignUpUserSteps";
 import Header from "@/components/Header";
 import UploadButton from "@/components/upload";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -14,11 +14,16 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
 
+
+
 function NavbarHeader() {
+  const [table, setTable] = useState([])
+  const [headers, setHeaders] = useState([])
+  console.log(table)
   return (
     <>
 
-      <Navbar expand="lg" className="navbar-dark bg-dark w-100">
+      <Navbar expand="lg" className="navbar-light bg-customFormBg w-100">
         <Container>
           <Navbar.Brand href="#home">LOGO</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -60,12 +65,68 @@ function NavbarHeader() {
             Upload your CSV file to get started. We will automatically create a
             table in your database with the same name as your CSV file.
           </p>
-          <UploadButton />
+          <UploadButton setTable={setTable} setHeaders={setHeaders} />
+        </div>
+        {/* <div className="mt-4 p-6 max-w-sm mx-auto bg-customFormBg flex items-center rounded-large shadow-lg gap-x-4">
+          {/* <div class= "shrink-0">
+            <img src="" alt="" />
+          </div> */}
+        {/* <div>
+            <div className="text-lg font-medium text-black">ChitChat</div>
+            <p className= "text-white">You have a new msg</p>
+          </div>
+
+        </div> */}
+        <div className="overflow-x-auto">
+        <table className="w-full mt-3 table-auto hover:table-fixed border border-2  border-dotted border-black shadow-md px-10">
+    
+          <thead>
+            <tr className="bg-customFormBg ">
+              {/* <td>name</td>
+              <td>transaction</td> */
+              }
+              {headers.map((header) => (<th key={header} className="px-4 py-2 text-left" >{header}</th>))}
+            </tr>
+          </thead>
+          <tbody>
+            {table?.length > 0 && table?.map((obj: any) => (
+              <tr>
+                {headers.map((header) => (<td key={header} className="px-4 py-2 border">{obj[header]}</td>))}
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+        <div className="p-6 m-3 max-w-md mx-auto flex rounded-large border-black overflow-hidden md:max-w-2xl shadow-md">
+          <div className="md:flex">
+            <div className=" md:flex">
+              <img className="rounded-large object-cover w-full md:h-full md:w-48 flex border-black" src="/images/background.png" alt="" />
+            </div>
+            <div className="m-2 pt-2  ">
+              <div className="block leading-tight text-black hover:underline text-lg font-medium ">Company card</div>
+              <p className="pt-3 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi quas consequuntur ducimus quia doloribus maiores dolorem pariatur hic, perspiciatis enim beatae dolore quibusdam eaque explicabo unde quisquam doloremque? Quisquam, optio?</p>
+            </div>
+
+
+
+          </div>
+
+        </div>
+        <div className="bg-white rounded-lg dark:bg-slate-800 px-6 py-8 ring-1 ring-slate-900 shadow-xl ">
+          <span className="inline-flex"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 stroke-cyan-500 hover:stroke-cyan-700">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+          </svg>
+
+            {/* <svg className="fill-blue-500 ..."> */}
+
+          </span>
+          <h3 className="font-medium text-slate-900 dark:text-white mt-5 text-base tracking-tight ">Write the Codes</h3>
+          <p className="text-slate-500 dark:text-slate-400 mt-3 text-sm">The zero Gravity Pen can be used to write in any orientation,including upside-down,It even works in outer space</p>
         </div>
       </div>
 
-
-      <footer className="w-full h-5 border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs bg-dark text-white">
+      <footer className="w-full h-5 border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs bg-white text-black">
         <p>
           Powered by{" "}
           <a
@@ -85,3 +146,4 @@ function NavbarHeader() {
 }
 
 export default NavbarHeader;
+// export default Counter;
