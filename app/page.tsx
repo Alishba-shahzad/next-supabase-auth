@@ -56,7 +56,7 @@ function NavbarHeader() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="flex-1 flex flex-col max-w-4xl px-3 py-5">
+      <div className="w-100 px-3 py-5">
         <Header />
         {/* write code to implement upload functionality for uploading csv files */}
         <div className="flex flex-col mt-5">
@@ -78,25 +78,25 @@ function NavbarHeader() {
 
         </div> */}
         <div className="overflow-x-auto">
-        <table className="w-full mt-3 table-auto hover:table-fixed border border-2  border-dotted border-black shadow-md px-10">
-    
-          <thead>
-            <tr className="bg-customFormBg ">
-              {/* <td>name</td>
-              <td>transaction</td> */
-              }
-              {headers.map((header) => (<th key={header} className="px-4 py-2 text-left" >{header}</th>))}
-            </tr>
-          </thead>
-          <tbody>
-            {table?.length > 0 && table?.map((obj: any) => (
-              <tr>
-                {headers.map((header) => (<td key={header} className="px-4 py-2 border">{obj[header]}</td>))}
+          <table className="min-w-full mt-3 table-auto border-2  border-solid border-black shadow-md px-10">
 
+            <thead>
+              <tr className="bg-customFormBg ">
+                {/* <td>name</td>
+              <td>transaction</td> */
+                }
+                {headers.map((header) => (<th key={header} className="px-4 py-2 text-left text-white border " >{header}</th>))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {table?.length > 0 && table?.map((obj: any, index: number) => (
+                <tr key={index} className="odd:bg-white even:bg-gray-50">
+                  {headers.map((header) => (<td key={header} className="px-4 py-2 border">{obj[header]}</td>))}
+
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         <div className="p-6 m-3 max-w-md mx-auto flex rounded-large border-black overflow-hidden md:max-w-2xl shadow-md">
           <div className="md:flex">
@@ -107,9 +107,6 @@ function NavbarHeader() {
               <div className="block leading-tight text-black hover:underline text-lg font-medium ">Company card</div>
               <p className="pt-3 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi quas consequuntur ducimus quia doloribus maiores dolorem pariatur hic, perspiciatis enim beatae dolore quibusdam eaque explicabo unde quisquam doloremque? Quisquam, optio?</p>
             </div>
-
-
-
           </div>
 
         </div>
@@ -146,4 +143,3 @@ function NavbarHeader() {
 }
 
 export default NavbarHeader;
-// export default Counter;
