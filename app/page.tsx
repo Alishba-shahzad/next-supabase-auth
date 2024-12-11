@@ -37,7 +37,7 @@ function NavbarHeader() {
               {/* <Nav.Link href="/Contact" className="text-white">Contact</Nav.Link> */}
               <Link
               href="/contact"
-              className="transition ease-in-out px-8 py-2 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
+              className="px-3 py-0 font text-white no-underline"
             >
               Contact
             </Link>
@@ -58,7 +58,7 @@ function NavbarHeader() {
             </Nav>
             <Link
               href="/login"
-              className="transition ease-in-out px-8 py-2 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
+              className=" m-2 transition ease-in-out px-8 py-1 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
             >
               Login
             </Link>
