@@ -13,7 +13,9 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
-
+import { Card } from "react-bootstrap";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Contact from "./contact/page";
 
 
 function NavbarHeader() {
@@ -32,7 +34,14 @@ function NavbarHeader() {
               <Nav.Link href="#home" className="text-white">Home</Nav.Link>
               <Nav.Link href="#About" className="text-white">About</Nav.Link>
               {/* <Nav.Link href="#Portfolio" className="text-white">Portfolio</Nav.Link> */}
-              <Nav.Link href="#Contact" className="text-white">Contact</Nav.Link>
+              {/* <Nav.Link href="/Contact" className="text-white">Contact</Nav.Link> */}
+              <Link
+              href="/contact"
+              className="transition ease-in-out px-8 py-2 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
+            >
+              Contact
+            </Link>
+
               <Nav.Link href="#News" className="text-white">News</Nav.Link>
               <Nav.Link href="#Events" className="text-white">Events</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="text-white">
@@ -98,10 +107,12 @@ function NavbarHeader() {
             </tbody>
           </table>
         </div>
-        <div className="p-6 m-3 max-w-md mx-auto flex rounded-large border-black overflow-hidden md:max-w-2xl shadow-md">
+       
+
+        <div className="p-6 m-3 max-w-md mx-auto flex rounded-large border-black overflow-hidden md:max-w-2xl shadow-md border-2 ">
           <div className="md:flex">
             <div className=" md:flex">
-              <img className="rounded-large object-cover w-full md:h-full md:w-48 flex border-black" src="/images/background.png" alt="" />
+              <img className="rounded-md md:h-full md:w-48 max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 lg:w-full h-full flex border-black" src="/images/ecommerce.jpg" alt="" />
             </div>
             <div className="m-2 pt-2  ">
               <div className="block leading-tight text-black hover:underline text-lg font-medium ">Company card</div>
@@ -143,3 +154,4 @@ function NavbarHeader() {
 }
 
 export default NavbarHeader;
+
