@@ -13,8 +13,9 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-
+import Contact from "./contact/page";
 
 function NavbarHeader() {
   const [table, setTable] = useState([])
@@ -32,7 +33,13 @@ function NavbarHeader() {
               <Nav.Link href="#home" className="text-white">Home</Nav.Link>
               <Nav.Link href="#About" className="text-white">About</Nav.Link>
               {/* <Nav.Link href="#Portfolio" className="text-white">Portfolio</Nav.Link> */}
-              <Nav.Link href="#Contact" className="text-white">Contact</Nav.Link>
+              {/* <Nav.Link href="#Contact" className="text-white">Contact</Nav.Link> */}
+              <Link
+              href="/contact"
+              className="transition ease-in-out px-8 py-2 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
+            >
+                  Contact
+            </Link>
               <Nav.Link href="#News" className="text-white">News</Nav.Link>
               <Nav.Link href="#Events" className="text-white">Events</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="text-white">
@@ -56,7 +63,7 @@ function NavbarHeader() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="flex-1 flex flex-col max-w-4xl px-3 py-5">
+      <div className=" w-full px-3 py-5">
         <Header />
         {/* write code to implement upload functionality for uploading csv files */}
         <div className="flex flex-col mt-5">
@@ -78,26 +85,28 @@ function NavbarHeader() {
 
         </div> */}
         <div className="overflow-x-auto">
-        <table className="w-full mt-3 table-auto hover:table-fixed border border-2  border-dotted border-black shadow-md px-10">
+        <table className="min-w-full mt-3 border-collapse border border-black ">
     
           <thead>
             <tr className="bg-customFormBg ">
               {/* <td>name</td>
               <td>transaction</td> */
               }
-              {headers.map((header) => (<th key={header} className="px-4 py-2 text-left" >{header}</th>))}
+              {headers.map((header) => (<th key={header} className="px-4 py-2 text-left text-sm sm:px-4 sm:py-2 sm:text-base whitespace-nowrap border" >{header}</th>))}
             </tr>
           </thead>
           <tbody>
-            {table?.length > 0 && table?.map((obj: any) => (
-              <tr>
-                {headers.map((header) => (<td key={header} className="px-4 py-2 border">{obj[header]}</td>))}
+            {table?.length > 0 && table?.map((obj: any, rowIndex:any) => (
+              <tr key={rowIndex} className="odd:bg-white even:bg-gray-50">
+                {headers.map((header) => (<td key={header} className="px-4 py-2 text-sm sm:px-4 sm:py-2 sm:text-base border whitespace-nowrap border">{obj[header]}</td>))}
 
               </tr>
             ))}
           </tbody>
         </table>
         </div>
+
+
         <div className="p-6 m-3 max-w-md mx-auto flex rounded-large border-black overflow-hidden md:max-w-2xl shadow-md">
           <div className="md:flex">
             <div className=" md:flex">
@@ -113,6 +122,28 @@ function NavbarHeader() {
           </div>
 
         </div>
+            <div className="bg-gray-100 py-8">
+  <h2 className="text-2xl font-bold text-center mb-6">What Our Clients Say</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
+    <div className="bg-white shadow-lg p-4 rounded">
+      <p>"Great service! Highly recommend."</p>
+      <span className="text-sm text-gray-500">- Client 1</span>
+    </div>
+    <div className="bg-white shadow-lg p-4 rounded">
+      <p>"Amazing experience working with them."</p>
+      <span className="text-sm text-gray-500">- Client 2</span>
+    </div>
+    <div>
+      <p>Very Appreciated</p>
+      <span>
+        Client 3
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
         <div className="bg-white rounded-lg dark:bg-slate-800 px-6 py-8 ring-1 ring-slate-900 shadow-xl ">
           <span className="inline-flex"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8 stroke-cyan-500 hover:stroke-cyan-700">
             <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />

@@ -1,12 +1,13 @@
-import Link from "next/link";
-import { headers } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
-import App from "next/app";
 
-<div>
-    <div>
-        <h1>ContactUs</h1>
-    </div>
+import React from 'react';
 
-</div>
+const Contact = () => {
+    return (
+        <div>
+            <h1>Contact Page</h1>
+            <p>This is the Contact page content.</p>
+        </div>
+    );
+};
+
+export default Contact;
