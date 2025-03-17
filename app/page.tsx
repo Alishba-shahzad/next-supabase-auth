@@ -1,4 +1,5 @@
 'use client';
+
 import DeployButton from "../components/DeployButton";
 import AuthButton from "../components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
@@ -13,9 +14,13 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from "next/link";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { Card } from "react-bootstrap";
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Contact from "./contact/page";
+import { deflateSync } from "zlib";
+// import 'globals.css';
+
+
 
 function NavbarHeader() {
   const [table, setTable] = useState([])
@@ -33,13 +38,14 @@ function NavbarHeader() {
               <Nav.Link href="#home" className="text-white">Home</Nav.Link>
               <Nav.Link href="#About" className="text-white">About</Nav.Link>
               {/* <Nav.Link href="#Portfolio" className="text-white">Portfolio</Nav.Link> */}
-              {/* <Nav.Link href="#Contact" className="text-white">Contact</Nav.Link> */}
+              {/* <Nav.Link href="/Contact" className="text-white">Contact</Nav.Link> */}
               <Link
               href="/contact"
-              className="transition ease-in-out px-8 py-2 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
+              className="px-3 py-0 font text-white no-underline"
             >
-                  Contact
+              Contact
             </Link>
+
               <Nav.Link href="#News" className="text-white">News</Nav.Link>
               <Nav.Link href="#Events" className="text-white">Events</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="text-white">
@@ -56,14 +62,14 @@ function NavbarHeader() {
             </Nav>
             <Link
               href="/login"
-              className="transition ease-in-out px-8 py-2 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
+              className=" m-2 transition ease-in-out px-8 py-1 text-white rounded-[50px] bg-transparent border border-white hover:text-black hover:bg-white no-underline"
             >
               Login
             </Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className=" w-full px-3 py-5">
+      <div className="w-100 px-3 py-5">
         <Header />
         {/* write code to implement upload functionality for uploading csv files */}
         <div className="flex flex-col mt-5">
@@ -85,63 +91,141 @@ function NavbarHeader() {
 
         </div> */}
         <div className="overflow-x-auto">
-        <table className="min-w-full mt-3 border-collapse border border-black ">
-    
-          <thead>
-            <tr className="bg-customFormBg ">
-              {/* <td>name</td>
+          <table className="min-w-full mt-3 table-auto border-2  border-solid border-black shadow-md px-10">
+
+            <thead>
+              <tr className="bg-customFormBg ">
+                {/* <td>name</td>
               <td>transaction</td> */
-              }
-              {headers.map((header) => (<th key={header} className="px-4 py-2 text-left text-sm sm:px-4 sm:py-2 sm:text-base whitespace-nowrap border" >{header}</th>))}
-            </tr>
-          </thead>
-          <tbody>
-            {table?.length > 0 && table?.map((obj: any, rowIndex:any) => (
-              <tr key={rowIndex} className="odd:bg-white even:bg-gray-50">
-                {headers.map((header) => (<td key={header} className="px-4 py-2 text-sm sm:px-4 sm:py-2 sm:text-base border whitespace-nowrap border">{obj[header]}</td>))}
-
+                }
+                {headers.map((header) => (<th key={header} className="px-4 py-2 text-left text-white border " >{header}</th>))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {table?.length > 0 && table?.map((obj: any, index: number) => (
+                <tr key={index} className="odd:bg-white even:bg-gray-50">
+                  {headers.map((header) => (<td key={header} className="px-4 py-2 border">{obj[header]}</td>))}
+
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-
-        <div className="p-6 m-3 max-w-md mx-auto flex rounded-large border-black overflow-hidden md:max-w-2xl shadow-md">
+       
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 ">
+        <div className="p-6 m-3 max-w-md mx-auto flex rounded-large border-black overflow-hidden md:max-w-2xl shadow-md border-2 ">
           <div className="md:flex">
             <div className=" md:flex">
-              <img className="rounded-large object-cover w-full md:h-full md:w-48 flex border-black" src="/images/background.png" alt="" />
+              <img className="rounded-md md:h-full md:w-48 max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 lg:w-full h-full flex border-black" src="/images/ecommerce.jpg" alt="" />
             </div>
             <div className="m-2 pt-2  ">
               <div className="block leading-tight text-black hover:underline text-lg font-medium ">Company card</div>
               <p className="pt-3 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi quas consequuntur ducimus quia doloribus maiores dolorem pariatur hic, perspiciatis enim beatae dolore quibusdam eaque explicabo unde quisquam doloremque? Quisquam, optio?</p>
             </div>
-
-
-
           </div>
-
+          </div>
+          <div className="p-6 m-3 max-w-md mx-auto flex rounded-large border-black overflow-hidden md:max-w-2xl shadow-md border-2 ">
+          <div className="md:flex">
+            <div className=" md:flex">
+              <img className="rounded-md md:h-full md:w-48 max-w-sm transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0 lg:w-full h-full flex border-black" src="/images/ecommerce.jpg" alt="" />
+            </div>
+            <div className="m-2 pt-2  ">
+              <div className="block leading-tight text-black hover:underline text-lg font-medium ">Company card</div>
+              <p className="pt-3 text-slate-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi quas consequuntur ducimus quia doloribus maiores dolorem pariatur hic, perspiciatis enim beatae dolore quibusdam eaque explicabo unde quisquam doloremque? Quisquam, optio?</p>
+            </div>
+          </div>
+          </div>
         </div>
-            <div className="bg-gray-100 py-8">
-  <h2 className="text-2xl font-bold text-center mb-6">What Our Clients Say</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6">
-    <div className="bg-white shadow-lg p-4 rounded">
-      <p>"Great service! Highly recommend."</p>
-      <span className="text-sm text-gray-500">- Client 1</span>
-    </div>
-    <div className="bg-white shadow-lg p-4 rounded">
-      <p>"Amazing experience working with them."</p>
-      <span className="text-sm text-gray-500">- Client 2</span>
-    </div>
-    <div>
-      <p>Very Appreciated</p>
-      <span>
-        Client 3
-      </span>
-    </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 border border-spacing-3 border-t-8">
+        <div className="bg-white shadow-md rounded-2xl p-6 transform transition-transform hover:scale-105 border border-gray-400">
+    <img className="m-2 p-2 mt-1" src="/images/background.png" alt="" />
+    <h2 className="text-xl font-bold mb-2">Card 6</h2>
+    <p className="text-gray-600 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, fugiat? Est sit magnam ratione tempora temporibus hic vel nemo. Dignissimos veniam repellendus aperiam aspernatur sequi incidunt. Quibusdam alias minus nesciunt?</p>
+    <button className="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600">Get Started</button>
+  </div>
+  <div className="bg-white shadow-md rounded-2xl p-6 transform transition-transform hover:scale-105 border border-gray-400">
+    <img className="m-2 p-2 mt-1" src="/images/background.png" alt="" />
+    <h2 className="text-xl font-bold mb-2">Card 6</h2>
+    <p className="text-gray-600 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, fugiat? Est sit magnam ratione tempora temporibus hic vel nemo. Dignissimos veniam repellendus aperiam aspernatur sequi incidunt. Quibusdam alias minus nesciunt?</p>
+    <button className="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600">Get Started</button>
+  </div>
+  <div className="bg-white shadow-md rounded-2xl p-6 transform transition-transform hover:scale-105 border  border-gray-400">
+    <img className="m-2 p-2 mt-1" src="/images/background.png" alt="" />
+    <h2 className="text-xl font-bold mb-2">Card 6</h2>
+    <p className="text-gray-600 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, fugiat? Est sit magnam ratione tempora temporibus hic vel nemo. Dignissimos veniam repellendus aperiam aspernatur sequi incidunt. Quibusdam alias minus nesciunt?</p>
+    <button className="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600">Get Started</button>
+  </div>
+  <div className="bg-white shadow-md rounded-2xl p-6 transform transition-transform hover:scale-105 border border-gray-400">
+    <img className="m-2 p-2 mt-1" src="/images/background.png" alt="" />
+    <h2 className="text-xl font-bold mb-2">Card 6</h2>
+    <p className="text-gray-600 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, fugiat? Est sit magnam ratione tempora temporibus hic vel nemo. Dignissimos veniam repellendus aperiam aspernatur sequi incidunt. Quibusdam alias minus nesciunt?</p>
+    <button className="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600">Get Started</button>
+  </div>
+  <div className="bg-white shadow-md rounded-2xl p-6 transform transition-transform hover:scale-105 border  border-gray-400">
+    <img className="m-2 p-2 mt-1" src="/images/background.png" alt="" />
+    <h2 className="text-xl font-bold mb-2">Card 6</h2>
+    <p className="text-gray-600 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, fugiat? Est sit magnam ratione tempora temporibus hic vel nemo. Dignissimos veniam repellendus aperiam aspernatur sequi incidunt. Quibusdam alias minus nesciunt?</p>
+    <button className="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600">Get Started</button>
+  </div>
+  <div className="bg-white shadow-md rounded-2xl p-6 transform transition-transform hover:scale-105 border  border-gray-400">
+    <img className="m-2 p-2 mt-1" src="/images/background.png" alt="" />
+    <h2 className="text-xl font-bold mb-2">Card 6</h2>
+    <p className="text-gray-600 mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, fugiat? Est sit magnam ratione tempora temporibus hic vel nemo. Dignissimos veniam repellendus aperiam aspernatur sequi incidunt. Quibusdam alias minus nesciunt?</p>
+    <button className="w-full bg-pink-500 text-white py-2 rounded-lg hover:bg-pink-600">Get Started</button>
   </div>
 </div>
+        
+<div>
+  <div id="bento-grid" className="flex flex-col gap-6 px-6 py-12 max-w-7xl mt-16 mx-auto lg:px-8 lg:mt-32">
+          <h2 className="text-5xl sm:font-semibold mb-14">ToDesktop handle the details</h2>
+          <div id="grid-container" className="flex flex-col gap-6 lg:grid lg:grid-cols-3" style={{ gridAutoRows:"96px" }}>
 
+              <div className="row-start-1 row-end-3 group rounded-2xl p-[1px] bg-slate-100 hover:bg-gradient-to-br hover:from-red-200 hover:via-purple-200 hover:to-yellow-200">
+                <div className="bg-white rounded-2xl w-full h-full p-6 flex flex-col gap-6 items-center group-hover:bg-gradient-to-br group-hover:from-red-50 group-hover:via-purple-50 group-hover:to-yellow-50">
+                  <h2 className="text-2xl">Native Notification</h2>
+                  <img src="./images/backgrounds.png" alt="" />
+                </div>
+              </div>
+              <div className="row-start-1 row-end-4 group rounded-2xl p-[1px] bg-slate-100 hover:bg-gradient-to-br hover:from-red-200 hover:via-purple-200 hover:to-yellow-200">
+                <div className="bg-white rounded-2xl w-full h-full p-6 flex flex-col gap-6 items-center group-hover:bg-gradient-to-br group-hover:from-red-50 group-hover:via-purple-50 group-hover:to-yellow-50">
+                  <h2 className="text-2xl">Native Notification</h2>
+                  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem officia deleniti facere, eligendi impedit laboriosam architecto autem quia maiores minus nulla voluptatem ducimu..</p>
+                  <img src="./images/backgrounds.png" alt="" />
+                </div>
+              </div>
+              <div className="row-start-1 row-end-3 group rounded-2xl p-[1px] bg-slate-100 hover:bg-gradient-to-br hover:from-red-200 hover:via-purple-200 hover:to-yellow-200">
+                <div className="bg-white rounded-2xl w-full h-full p-6 flex flex-col gap-6 items-center group-hover:bg-gradient-to-br group-hover:from-red-50 group-hover:via-purple-50 group-hover:to-yellow-50">
+                  <h2 className="text-2xl">Native Notification</h2>
+                  <img src="./images/backgrounds.png" alt="" />
+                </div>
+              </div>
+              <div className="row-start-3 row-end-6 group rounded-2xl p-[1px] bg-slate-100 hover:bg-gradient-to-br hover:from-red-200 hover:via-purple-200 hover:to-yellow-200">
+                <div className="bg-white rounded-2xl w-full h-full p-6 flex flex-col gap-6 items-center group-hover:bg-gradient-to-br group-hover:from-red-50 group-hover:via-purple-50 group-hover:to-yellow-50">
+                  <h2 className="text-2xl">Native Notification</h2>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam odio nostrum non, iusto cumque optio.</p>
+                  <img src="./images/backgrounds.png" alt="" />
+                </div>
+              </div>
+              <div className="row-start-4 row-end-6 group rounded-2xl p-[1px] bg-slate-100 hover:bg-gradient-to-br hover:from-red-200 hover:via-purple-200 hover:to-yellow-200">
+                <div className="bg-white rounded-2xl w-full h-full p-6 flex flex-col gap-6 items-center group-hover:bg-gradient-to-br group-hover:from-red-50 group-hover:via-purple-50 group-hover:to-yellow-50">
+                  <h2 className="text-2xl">Native Notification</h2>
+                  <img src="./images/backgrounds.png" alt="" />
+                </div>
+              </div>
+              <div className="row-start-3 row-end-6 group rounded-2xl p-[1px] bg-slate-100 hover:bg-gradient-to-br hover:from-red-200 hover:via-purple-200 hover:to-yellow-200">
+                <div className="bg-white rounded-2xl w-full h-full p-6 flex flex-col gap-6 items-center group-hover:bg-gradient-to-br group-hover:from-red-50 group-hover:via-purple-50 group-hover:to-yellow-50">
+                  <h2 className="text-2xl">Native Notification</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam quisquam iste quos enim voluptates, tenetur eum! Possimus officiis quasi quae.</p>
+                  <img src="./images/backgrounds.png" alt="" />
+                </div>
+              </div>
+              
+
+          </div>
+  </div>
+</div>
+ 
 
 
         <div className="bg-white rounded-lg dark:bg-slate-800 px-6 py-8 ring-1 ring-slate-900 shadow-xl ">
@@ -177,4 +261,3 @@ function NavbarHeader() {
 }
 
 export default NavbarHeader;
-// export default Counter;

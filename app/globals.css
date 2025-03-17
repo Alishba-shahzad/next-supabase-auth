@@ -60,3 +60,6 @@ input#fileInput {
   padding: 50px;
   background-color: #fff;
 }
+#grid-container{
+  grid-auto-rows: 96px;
+}

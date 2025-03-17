@@ -44,6 +44,7 @@ module.exports = {
       'top': '12px 12px 0 0',
       'bottom': '0 0 12px 12px',
     },
+    
   },
   plugins: [],
 };

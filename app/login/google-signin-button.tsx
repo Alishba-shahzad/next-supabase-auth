@@ -1,4 +1,5 @@
 "use client";
+import { createClient } from '@/utils/supabase/client'
 
 const GoogleSignInButton = ({ supabase }: { supabase: any }) => {
   return (
@@ -21,4 +22,3 @@ const GoogleSignInButton = ({ supabase }: { supabase: any }) => {
 };
 
 export default GoogleSignInButton;
-
