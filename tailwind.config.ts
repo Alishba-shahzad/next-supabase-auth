@@ -4,6 +4,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       padding: {
@@ -27,6 +28,9 @@ module.exports = {
           "background-hover": "hsl(var(--btn-background-hover))",
         },
         graylight: '#f1f1f1',
+        medium: '#293245',
+        dark: '#232A3C',
+     
       },
       backgroundImage: {
         customFormBg: "var(--custom-form-ng)",

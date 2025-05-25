@@ -1,7 +1,7 @@
-
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { url } from "inspector";
+import { Providers } from "@/components/ThemeToggle";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -18,13 +18,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
-          {children}
-        </main>
-      </body>
-    </html>
+  return (<>
+     <html lang="en" className={`${GeistSans.className} `}>
+    <Providers>
+       <body className="bg-background text-foreground">
+         <main className="min-h-screen flex flex-col items-center dark:bg-gray-900">
+          
+               {children}
+          
+         </main>
+       </body>
+</Providers>
+     </html>
+  </>
+
   );
 }

@@ -10,7 +10,7 @@ export default function Header() {
 
         <a
           target="_blank"
-          className="font-bold no-underline text-black"
+          className="font-bold no-underline text-gray-950 dark:text-white"
           rel="noreferrer"
 
         >

@@ -52,14 +52,35 @@ input::file-selector-button {
   background-position: 10px;
 }
 
+.dark input::file-selector-button {
+  background: #374151!important;
+  color: #fff !important;
+  background-image: url(../public/images/upload-icon.svg) !important;
+  background-repeat: no-repeat !important;
+  position: relative !important;
+  background-size: 30px !important;
+  background-position: 10px !important;
+}
+
+.dark input#fileInput {
+  border-color: #9e9a9a;
+  background-color: #e5e7eb;
+}
+
+
+
 input#fileInput {
-  border: 3px dashed lightgrey;
+  border: 3px dashed rgb(211, 211, 211);
   border-radius: 4px;
   font-size: 18px;
   width: 100%;
   padding: 50px;
   background-color: #fff;
 }
+
+
+
 #grid-container{
   grid-auto-rows: 96px;
 }
+

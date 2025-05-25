@@ -5,6 +5,8 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
 import Image from "next/image";
+import ThemeSwitch from "@/components/ThemeSwitch";
+
 
 export default function Login({
   searchParams,
@@ -72,13 +74,15 @@ export default function Login({
     }
   };
   return (
+
+
     <div className="flex-1 flex px-8 items-center gap-2 max-w-4xl w-full">
 
       <div className="flex-1 flex flex-col p-2 gap-4 relative">
         <div className="flex">
           <Link
             href="/"
-            className="py-2 px-4 rounded-md no-underline text-white bg-customFormBg flex items-center group text-sm"
+            className="py-2 px-4 rounded-md no-underline text-white bg-pink-600 dark:bg-gray-700 flex items-center group text-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -96,9 +100,11 @@ export default function Login({
             </svg>{" "}
             Back
           </Link>
+  
         </div>
+  
         <form className="md:flex flex-1 w-full shadow-3xl rounded-large block">
-          <div className="flex-1 flex flex-col w-full justify-center text-foreground p-8 bg-white md:rounded-left rounded-top p-[50px]">
+          <div className="flex-1 flex flex-col w-full justify-center text-foreground p-8 bg-slate-50 dark:bg-gray-300 md:rounded-left rounded-top p-[50px]">
             <div className="flex items-center mb-3">
               <h1 className="flex-1 text-2xl">Sign in</h1>
             </div>
@@ -127,7 +133,7 @@ export default function Login({
             </div>
             <SubmitButton
               formAction={signIn}
-              className="rounded-[50px] px-4 py-2 text-foreground bg-customFormBg text-white border"
+              className="rounded-[50px] px-4 py-2 text-foreground bg-pink-600 dark:bg-gray-700 text-white border"
               pendingText="Signing In..."
             >
               Sign In
@@ -140,21 +146,21 @@ export default function Login({
             <div className="flex items-center">
               <div className="flex-1 flex gap-2 py-2">
                 <input className="w-4 accent-[#f15584]" type="checkbox" id="flexCheckDefault" />
-                <label className="hover:cursor-pointer text-textColor">
+                <label className="hover:cursor-pointer text-textColor dark:text-gray-800">
                   Remember Me!
                 </label>
               </div>
               <div className="flex-1 text-right">
                 <Link
                   href="#"
-                  className="no-underline text-sm text-linkColor"
+                  className="no-underline text-sm text-linkColor "
                 >
                   Forgot Password
                 </Link>
               </div>
             </div>
           </div>
-          <div className="p-[50px] flex-1 text-center flex items-center flex-col justify-center p-8 bg-customFormBg text-white md:rounded-right rounded-bottom">
+          <div className="p-[50px] flex-1 text-center flex items-center flex-col justify-center p-8 bg-pink-600 dark:bg-gray-800 text-white md:rounded-right rounded-bottom">
             <h1 className="text-3xl font-semibold text-center">Welcome To Login</h1>
             <p className="text-md text-center py-2">Don't have an account?</p>
             <div className="py-2">
