@@ -82,7 +82,7 @@ export default function Login({
         <div className="flex">
           <Link
             href="/"
-            className="py-2 px-4 rounded-md no-underline text-white bg-pink-600 dark:bg-gray-700 flex items-center group text-sm"
+            className="py-2 px-4 rounded-md no-underline text-white bg-customFormBg dark:bg-gray-700 flex items-center group text-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
