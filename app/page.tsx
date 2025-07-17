@@ -18,11 +18,7 @@ import Link from "next/link";
 import Contact from "./contact/page";
 import { deflateSync } from "zlib";
 import ThemeSwitch from "@/components/ThemeSwitch";
-// import { Providers } from "@/components/ThemeToggle";
-// import 'globals.css';
 import RootLayout from "./layout";
-// app/page.tsx
-
 
 
 
